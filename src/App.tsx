@@ -46,6 +46,14 @@ function App() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const updateTodo = (id: string, newText: string) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, text: newText } : todo
+      )
+    );
+  };
+
   return (
     <MantineProvider>
       <Container size="sm" py={40}>
@@ -64,7 +72,7 @@ function App() {
             </Stack>
           </Paper>
 
-          <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} />
+          <TodoList todos={todos} onToggle={toggleTodo} onDelete={deleteTodo} onUpdate={updateTodo} />
         </Stack>
       </Container>
     </MantineProvider>

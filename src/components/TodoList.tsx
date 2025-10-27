@@ -8,11 +8,12 @@ interface TodoListProps {
   todos: Todo[];
   onToggle: (id: string) => void;
   onDelete: (id: string) => void;
+  onUpdate: (id: string, newText: string) => void;
 }
 
 type Filter = 'all' | 'active' | 'completed';
 
-export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
+export function TodoList({ todos, onToggle, onDelete, onUpdate }: TodoListProps) {
   const [filter, setFilter] = useState<Filter>('all');
 
   const filteredTodos = todos.filter((todo) => {
@@ -67,6 +68,7 @@ export function TodoList({ todos, onToggle, onDelete }: TodoListProps) {
               todo={todo}
               onToggle={onToggle}
               onDelete={onDelete}
+              onUpdate={onUpdate}
             />
           ))}
         </Stack>
